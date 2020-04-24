@@ -4,10 +4,10 @@ from django.http import HttpResponse
 # Create your views here.
 
 def home(request):
-    return HttpResponse('home')
+    return render(request, 'accounts/dashboard.html')
 
 def nunnys(request):
-    return HttpResponse('nunnys')
+    return render(request, 'accounts/nunnys.html')
 
 def homeowner(request):
-    return HttpResponse('homeowner')
+    return render(request, 'accounts/homeowner.html')
