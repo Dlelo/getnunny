@@ -1,5 +1,11 @@
 from django.db import models
 # Create your models here.
+class Tag(models.Model):
+    name = models.CharField(max_length = 200, null=True)
+
+    def __str__(self):
+        return self.name
+
 class Nunny(models.Model):
     CATEGORY=(
         ('LiveIn', 'LiveIn'),
@@ -20,11 +26,15 @@ class Nunny(models.Model):
     denomination = models.CharField(max_length=100, null=True)
     contact_person = models.CharField(max_length=100, null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    pay_range = models.FloatField(null=True)
+    pay_range = models.FloatField( blank=True, null=True)
     category = models.CharField(max_length=100, null=True, choices=CATEGORY)
-
+    description =  models.CharField(max_length=200, null=True, blank=True)
+    tags = models.ManyToManyField(Tag)
+    
     def __str__(self):
         return self.name
+
+
     
 class HouseOwner(models.Model):
     name = models.CharField(max_length=100, null=True)
@@ -35,6 +45,11 @@ class HouseOwner(models.Model):
     location = models.CharField(max_length=100, null=True)
     number_of_children = models.IntegerField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 
 class Order(models.Model):
     STATUS =(
@@ -47,3 +62,7 @@ class Order(models.Model):
     nunny = models.ForeignKey(Nunny, null=True, on_delete=models.SET_NULL)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     status = models.CharField(max_length=100, null=True, choices=STATUS )
+
+    def __str__(self):
+        return self.status
+    
