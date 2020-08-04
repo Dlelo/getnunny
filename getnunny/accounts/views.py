@@ -5,7 +5,12 @@ from django.http import HttpResponse
 from .models import *
 
 def home(request):
-    return render(request, 'accounts/dashboard.html')
+    orders = Order.objects.all()
+    homeOwner = HouseOwner.objects.all()
+
+    context = {'orders':orders, 'homeOwner':homeOwner}
+
+    return render(request, 'accounts/dashboard.html', context)
 
 def nunnys(request):
     nunnys = Nunny.objects.all()
