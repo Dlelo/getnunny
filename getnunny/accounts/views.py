@@ -8,7 +8,12 @@ def home(request):
     orders = Order.objects.all()
     homeOwner = HouseOwner.objects.all()
 
-    context = {'orders':orders, 'homeOwner':homeOwner}
+    total_customers = homeOwner.count()
+    total_orders = orders.count()
+    delivered = orders.filter('Allocated').count()
+    pending = orders.filter('Pending').count()
+
+    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders, 'delivered': delivered, 'pending': pending}
 
     return render(request, 'accounts/dashboard.html', context)
 
