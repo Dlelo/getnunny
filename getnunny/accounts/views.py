@@ -10,10 +10,10 @@ def home(request):
 
     total_customers = homeOwner.count()
     total_orders = orders.count()
-    delivered = orders.filter('Allocated').count()
-    pending = orders.filter('Pending').count()
+    delivered = orders.filter(status= 'Allocated').count()
+    pending = orders.filter(status = 'Pending').count()
 
-    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders, 'delivered': delivered, 'pending': pending}
+    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders}
 
     return render(request, 'accounts/dashboard.html', context)
 
