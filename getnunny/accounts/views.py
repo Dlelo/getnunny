@@ -10,10 +10,10 @@ def home(request):
 
     total_customers = homeOwner.count()
     total_orders = orders.count()
-    delivered = orders.filter(status= 'Allocated').count()
+    delivered = orders.filter(status = 'Allocated').count()
     pending = orders.filter(status = 'Pending').count()
 
-    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders}
+    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders,'pending':pending,'delivered': delivered}
 
     return render(request, 'accounts/dashboard.html', context)
 
@@ -21,5 +21,9 @@ def nunnys(request):
     nunnys = Nunny.objects.all()
     return render(request, 'accounts/nunnys.html', {'nunnys':nunnys})
 
-def homeowner(request):
+def homeowner(request, pk_homeowner):
+    homeowner = HouseOwner.objects.get(id=pk_homeowner)
+    orders = homeowner.order_set.all()
+
+    context = {'homeowner': homeowner , 'orders':orders}
     return render(request, 'accounts/homeowner.html')

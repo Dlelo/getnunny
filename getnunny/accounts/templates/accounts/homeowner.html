@@ -11,30 +11,26 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Location</th>
+                <th scope="col">Nunny</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date Ordered</th>
+                <th scope="col">Status</th>
+                <th scope="col"> Update</th>
+                <th scope="col"> Remove</th>
               </tr>
             </thead>
             <tbody>
+              {% for order in orders %}
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>PipeLIne</td>
+                <!-- <th scope="row">1</th> -->
+                <td>{{order.nunny}}</td>
+                <td>{{order.nunny.category}}</td>
+                <td>{{order.date_created}}</td>
+                <td>{{order.status}}</td>
+                <td><a href="">Update</a></td>
+                <td><a href="">Delete</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>Embakasi</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>Kawangware</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
     </div> 
