@@ -14,77 +14,27 @@
             </a>
         </div>
         <table class="table table-sm">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>PipeLIne</td>
-              </tr>
-              <tr>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>Embakasi</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>Kawangware</td>
-              </tr>
-            </tbody>
-          </table>
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price Range</th>
+              <th scope="col">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for nunny in nunnys %}
+            <tr>
+              
+              <td>{{nunny.name}}</td>
+              <td>{{nunny.price_range}}</td>
+              <td>{{nunny.category}}</td>
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
     </div>
     <div class="col-md-6">
-        <h5>BABY-SITTERS</h5>
-        <hr>
-        <div class="card card-body">
-            <a class="btn btn-primary btn-sm btn-block" href= "">
-                Add Baby-Sitter
-            </a>
-        </div>
-        <table class="table table-sm">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>PipeLIne</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>Embakasi</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>Kawangware</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-5">
         <h5>CUSTOMERS</h5>
         <hr>
         <div class="card card-body">
@@ -104,6 +54,7 @@
               {% for customer in homeOwner %}
               <tr>
                 <!-- <th scope="row">1</th> -->
+                <td><a href="{% url 'customer' customer.id%}">View details</a> </td>
                 <td>{{customer.name}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.location}}</td>
@@ -124,7 +75,10 @@
             </tbody>
           </table>
     </div> 
-    <div class= "col-md-7">
+</div>
+<div class="row">
+    <
+    <div class= "col-md-10">
         <h4>ORDERS</h4>
         <hr>
         <div class="card card-body">

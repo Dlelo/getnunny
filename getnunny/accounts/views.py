@@ -7,13 +7,14 @@ from .models import *
 def home(request):
     orders = Order.objects.all()
     homeOwner = HouseOwner.objects.all()
+    nunnys = Nunny.objects.all()
 
     total_customers = homeOwner.count()
     total_orders = orders.count()
     delivered = orders.filter(status = 'Allocated').count()
     pending = orders.filter(status = 'Pending').count()
 
-    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders,'pending':pending,'delivered': delivered}
+    context = {'orders':orders, 'homeOwner':homeOwner, 'total_orders':total_orders,'pending':pending,'delivered': delivered, "nunnys":nunnys}
 
     return render(request, 'accounts/dashboard.html', context)
 
@@ -24,6 +25,7 @@ def nunnys(request):
 def homeowner(request, pk_homeowner):
     homeowner = HouseOwner.objects.get(id=pk_homeowner)
     orders = homeowner.order_set.all()
+    order_count = orders.count()
 
-    context = {'homeowner': homeowner , 'orders':orders}
-    return render(request, 'accounts/homeowner.html')
+    context = {'homeowner': homeowner , 'orders':orders, 'order_count':order_count}
+    return render(request, 'accounts/homeowner.html', context)
