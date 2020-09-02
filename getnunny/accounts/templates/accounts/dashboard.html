@@ -48,16 +48,17 @@
                 <th scope="col">Name</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Location</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
               {% for customer in homeOwner %}
               <tr>
                 <!-- <th scope="row">1</th> -->
-                <td><a href="{% url 'customer' customer.id%}">View details</a> </td>
                 <td>{{customer.name}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.location}}</td>
+                <td><a class="btn btn-sm btn-info" href="{% url 'customer' customer.id%}">View details</a> </td>
               </tr>
               {% endfor %}
               <!-- <tr>
@@ -104,8 +105,8 @@
                 <td>{{order.date_created}}</td>
                 <td>{{order.nunny}}</td>
                 <td>{{order.status}}</td>
-                <td><a href="">Update</a></td>
-                <td><a href="">Delete</td>
+                <td><a href="" class="btn btn-sm btn-info">Update</a></td>
+                <td><a href="" class="btn btn-sm btn-danger">Delete</td>
               </tr>
               {% endfor %}
              
