@@ -3,6 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 from .models import *
+from .forms import OrderForm
 
 def home(request):
     orders = Order.objects.all()
@@ -29,3 +30,9 @@ def homeowner(request, pk_homeowner):
 
     context = {'homeowner': homeowner , 'orders':orders, 'order_count':order_count}
     return render(request, 'accounts/homeowner.html', context)
+
+def createOrder(request):
+    form = OrderForm()
+    
+    context={'form':form}
+    return render(request, 'accounts/order_form.html', context)
