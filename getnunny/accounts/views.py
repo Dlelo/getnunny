@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # Create your views here.
@@ -33,6 +33,17 @@ def homeowner(request, pk_homeowner):
 
 def createOrder(request):
     form = OrderForm()
-    
+    if request.method == 'POST':
+        # print('printing POST', request.POST)
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
     context={'form':form}
+    return render(request, 'accounts/order_form.html', context)
+
+def updateOrder(request, pk_order):
+    form = OrderForm()
+    context = {'form': form}
     return render(request, 'accounts/order_form.html', context)
