@@ -19,6 +19,13 @@ def home(request):
 
     return render(request, 'accounts/dashboard.html', context)
 
+def homeownerslist (request) :
+    homeOwner = HouseOwner.objects.all()
+    context = {'homeOwner':homeOwner}
+
+    return render(request, 'accounts/homeowner.html', context)
+
+
 def nunnys(request):
     nunnys = Nunny.objects.all()
     return render(request, 'accounts/nunnys.html', {'nunnys':nunnys})
@@ -29,7 +36,7 @@ def homeowner(request, pk_homeowner):
     order_count = orders.count()
 
     context = {'homeowner': homeowner , 'orders':orders, 'order_count':order_count}
-    return render(request, 'accounts/homeowner.html', context)
+    return render(request, 'accounts/homeowners-detail-view.html', context)
 
 def createOrder(request):
     form = OrderForm()
@@ -44,6 +51,25 @@ def createOrder(request):
     return render(request, 'accounts/order_form.html', context)
 
 def updateOrder(request, pk_order):
-    form = OrderForm()
+    order = Order.objects.get(id = pk_order)
+    form = OrderForm(instance = order)
+
+    if request.method == 'POST':
+        # print('printing POST', request.POST)
+        form = OrderForm(request.POST, instance = order)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
     context = {'form': form}
     return render(request, 'accounts/order_form.html', context)
+
+def deleteOrder(request, pk_order):
+    order = Order.objects.get(id = pk_order)
+    
+    if request.method == 'POST':
+        order.delete()
+        return redirect('/')
+
+    context = {'item': order}
+    return render(request, 'accounts/delete.html', context)

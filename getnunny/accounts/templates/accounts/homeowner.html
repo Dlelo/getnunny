@@ -2,65 +2,39 @@
 
 {% block content %}
 
-<div class="row">
-	<div class="col-md">
-		<div class="card card-body">
-			<h5>Customer:</h5>
-			<hr>
-			<a class="btn btn-outline-info  btn-sm btn-block" href="">Update Customer</a>
-			<a class="btn btn-outline-danger  btn-sm btn-block" href="">Delete Customer</a>
-
-		</div>
-	</div>
-
-	<div class="col-md">
-		<div class="card card-body">
-			<h5>Contact Information</h5>
-			<hr>
-			<p>Email: {{homeowner.email}}</p>
-			<p>Phone: {{homeowner.phone}}</p>
-		</div>
-	</div>
-
-	<div class="col-md">
-		<div class="card card-body">
-			<h5>Total Orders</h5>
-			<hr>
-			<h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
-		</div>
-	</div>
-</div>
-
 <br>
 <div class="row">
-    <div class="col-md-12">
-        <table class="table table-sm">
-            <thead class="thead-light">
-              <tr>
-                
-                <th scope="col">Nunny</th>
-                <th scope="col">Category</th>
-                <th scope="col">Date Ordered</th>
-                <th scope="col">Status</th>
-                <th scope="col"> Update</th>
-                <th scope="col"> Remove</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for order in orders %}
-              <tr>
-                <!-- <th scope="row">1</th> -->
-                <td>{{order.nunny}}</td>
-                <td>{{order.nunny.category}}</td>
-                <td>{{order.date_created}}</td>
-                <td>{{order.status}}</td>
-                <td><a href="" class="btn btn-sm btn-info">Update</a></td>
-                <td><a href="" class="btn btn-sm btn-danger">Remove</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-    </div> 
+  <div class="col-md-6">
+    <h5>CUSTOMERS(HOME OWNERS)</h5>
+    <hr>
+    <div class="card card-body">
+      <a class="btn btn-primary btn-sm btn-block" href= "">
+          Add Customer
+      </a>
+  </div>
+    <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Location</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in homeOwner %}
+          <tr>
+            <!-- <th scope="row">1</th> -->
+            <td>{{customer.name}}</td>
+            <td>{{customer.phone}}</td>
+            <td>{{customer.location}}</td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'homeowner' customer.id%}">View details</a> </td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+</div> 
 </div>
 
 {% endblock %}

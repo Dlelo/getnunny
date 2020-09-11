@@ -58,7 +58,7 @@
                 <td>{{customer.name}}</td>
                 <td>{{customer.phone}}</td>
                 <td>{{customer.location}}</td>
-                <td><a class="btn btn-sm btn-info" href="{% url 'customer' customer.id%}">View details</a> </td>
+                <td><a class="btn btn-sm btn-info" href="{% url 'homeowner' customer.id%}">View details</a> </td>
               </tr>
               {% endfor %}
               
@@ -70,11 +70,11 @@
     <div class= "col-md-10">
         <h4>ORDERS</h4>
         <hr>
-        <div class="card card-body">
+        <!-- <div class="card card-body">
           <a class="btn btn-primary btn-sm btn-block" href= "{% url 'create_order' %}">
               Create Order
           </a>
-      </div>
+      </div> -->
         <table class="table table-sm">
             <thead class="thead-light">
               <tr>
@@ -94,7 +94,7 @@
                 <td>{{order.nunny}}</td>
                 <td>{{order.status}}</td>
                 <td><a href="{% url 'update_order' order.id%}" class="btn btn-sm btn-info">Update</a></td>
-                <td><a href="" class="btn btn-sm btn-danger">Delete</td>
+                <td><a href="{% url 'delete_order' order.id%}" class="btn btn-sm btn-danger">Delete</td>
               </tr>
               {% endfor %}
              
