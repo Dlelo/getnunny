@@ -38,8 +38,9 @@ def homeowner(request, pk_homeowner):
     context = {'homeowner': homeowner , 'orders':orders, 'order_count':order_count}
     return render(request, 'accounts/homeowners-detail-view.html', context)
 
-def createOrder(request):
-    form = OrderForm()
+def createOrder(request, pk_homeowner):
+    homeowner = HouseOwner.objects.get(id=pk_homeowner)
+    form = OrderForm(initial={'homeowner': homeowner })
     if request.method == 'POST':
         # print('printing POST', request.POST)
         form = OrderForm(request.POST)
