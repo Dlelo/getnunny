@@ -4,6 +4,7 @@ from django.http import HttpResponse
 # Create your views here.
 from .models import *
 from .forms import OrderForm
+from .filters import Orderfilter
 
 def home(request):
     orders = Order.objects.all()
@@ -40,7 +41,7 @@ def homeowner(request, pk_homeowner):
 
 def createOrder(request, pk_homeowner):
     homeowner = HouseOwner.objects.get(id=pk_homeowner)
-    form = OrderForm(initial={'homeowner': homeowner })
+    form = OrderForm(instance=homeowner)
     if request.method == 'POST':
         # print('printing POST', request.POST)
         form = OrderForm(request.POST)
